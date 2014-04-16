@@ -123,7 +123,7 @@
 	\item $HALT_{TM} = \{ \langle M, w \rangle \mid M \mbox{ is een TM en $M$ stopt op invoer $w$}\}$
 	
 	Bewijs met directe reductie naar $A_{TM}$ uit het ongerijmde.
-	Neem aan dat TM $R HALT_{TM}$ beslist. Construeer TM $S$ om $A_{TM}$ te beslissen, als volgt: \\
+	Neem aan dat TM $R$ $HALT_{TM}$ beslist. Construeer TM $S$ om $A_{TM}$ te beslissen, als volgt: \\
 	$S = $ ``Op invoer $\langle M, w \rangle$, een codering van een TM $M$ en een woord $w$:
 	\begin{enumerate}
 		\item Voer TM $R$ uit op invoer $\langle M, w \rangle$.
@@ -131,7 +131,7 @@
 		\item Als $R$ accepteert, simuleer $M$ op $w$ totdat het stopt.
 		\item Als $M$ heeft geaccepteerd, \emph{accepteer}; als $M$ heeft verworpen, \emph{verwerp}.''
 	\end{enumerate}
-	Het is duidelijk dat $R HALT_{TM}$ beslist als $S A_{TM}$ beslist. Omdat $A_{TM}$ onbeslisbaar is, moet $HALT_{TM}$ ook onbeslisbaar zijn.
+	Het is duidelijk dat $R$ $HALT_{TM}$ beslist als $S$ $A_{TM}$ beslist. Omdat $A_{TM}$ onbeslisbaar is, moet $HALT_{TM}$ ook onbeslisbaar zijn.
 	
 	
 	\item $E_{TM} = \{ \langle M \rangle \mid M \mbox{ is een Tm en } L(M) = \emptyset \}$
