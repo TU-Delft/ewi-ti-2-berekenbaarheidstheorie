@@ -189,7 +189,7 @@
 	
 	\item $E_{LBA} = \{ \langle M \rangle \mid M \mbox{ is een LBA waar } L(M) = \emptyset \}$
 	
-	Bewijs met directe reductie naar $A_{TM}$ uit het ongerijmde.
+	Bewijs met directe reductie naar $A_{TM}$ uit het ongerijmde. \\
 	Laat $R$ een TM zijn die $E_{LBA}$ beslist en construeer TM $S$ die $A_{TM}$ beslist als volgt: \\	
 	$S = $ ``Op invoer $\langle M, w \rangle$, waar $M$ een TM is en $w$ een woord:
 	\begin{enumerate}
@@ -207,6 +207,15 @@
 	
 	
 	\item $EQ_{CFG}$
+	Bewijs met directe reductie naar $ALL_{CFG}$ uit het ongerijmde.
+	Laat $R$ een TM zijn die $EQ_{CFG}$ beslist en construeer TM $S$ die $ALL_{CFG}$ beslist als volgt:
+	$S = $ ``Op invoer $\langle G \rangle$, waar $G$ een CFG is:
+	\begin{enumerate}
+		\item Voer $R$ uit op invoer $\langle G, G_1 \rangle$ waar $G_1$ een CFG is die $\Sigma^*$ genereert.
+		\item Als $R$ accepteert, \emph{accepteer}; als $R$ verwerpt, \emph{verwerp}.''
+	\end{enumerate}
+	Als $R$ een beslisser zou zijn voor $EQ_{CFG}$, dan zou $S$ een beslisser zijn voor $ALL_{CFG}$. Aangezien een beslisser voor $ALL_{CFG}$ niet kan bestaan, is $EQ_{TM}$ niet beslisbaar.
+	
 		
 \section*{Definities}
 \begin{description}
@@ -340,8 +349,13 @@
 	
 	\item Een taal is beslisbaar dan en slechts dan als het Turingherkenbaar is en co-Turingherkenbaar
 	
-	\item De \emph{Stelling van Rice} stelt dat een taal $L$ onbeslisbaar is wanneer deze taal non-triviaal is (dus zowel $L \neq \emptyset$ en $\overline{L} \neq \emptyset$). Verder mag $L$ alleen afhangen van de eigenschappen van de taal van de machines, zoals $|L(M)|$. Dit wil zeggen dat wanneer voor twee machines $M_1$ en $M_2$ geldt $L(M_1) = L(M_2)$ automatisch volgt dat $\langle M_1 \rangle \in L \Leftrightarrow \langle M_2 \rangle \in L$.
-	
+	\item \textbf{Stelling van Rice}: laat $L$ een taal zijn van de vorm
+	$$L = \{ \langle M \rangle \mid M \mbox{ heeft de eigenschap } P \}, \mbox{ waar}$$
+	\begin{enumerate}
+		\item P is niet trivaal; er bestaat tenminste een TM $M$ zodat $\langle M \rangle \in L$, en tenminste een TM $N$ zodat $\langle N \rangle \notin L$.
+		\item P is inderdaad een eigenschap van de \emph{talen} van TMs; wanneer $L(M) = L(N)$, geldt $\langle M \rangle \in M$ dan en slecht dan als $\langle N \rangle \in L$.
+	\end{enumerate}
+	Dan is $L$ onbeslisbaar.
 \end{itemize}
 
 \section*{Handige dingetjes}
