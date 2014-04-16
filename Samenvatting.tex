@@ -169,6 +169,9 @@
 		\item Voer $R$ uit op invoer $\langle M_2 \rangle$.
 		\item Als $R$ accepteert, \emph{accepteer}; als $R$ verwerpt, \emph{verwerp}.''
 	\end{enumerate}
+	
+	Als $M$ $w$ accepteert, accepteert $M_2$ elk woord $\Rightarrow L(M_2)$ is regulier. Als $M$ niet $w$ accepteert, accepteert $M_2$ alleen woorden van de vorm $0^n1^n \Rightarrow L(M_2)$ is niet regulier. Dus $M_2$ kunnen we 'voeren' aan $R$.
+	
 	Als $R$ een beslisser zou zijn voor $REGULAR_{TM}$, dan zou $S$ een beslisser zijn voor $A_{TM}$. Aangezien een beslisser voor $A_{TM}$ niet kan bestaan, is $REGULAR_{TM}$ niet beslisbaar.
 		
 	
@@ -207,10 +210,47 @@
 		
 \section*{Definities}
 \begin{description}
+	\item[Alfabet] \hfill \\
+	Een \textbf{alfabet} is een eindige verzameling $\Sigma$ van symbolen ofwel karakters.
+	
+	\item[Woord/String] \hfill \\
+	Een \textbf{woord} of \textbf{string} over $\Sigma$ is een eindige reeks symbolen uit $\Sigma$.\\
+	De lengte van een woord $x$, notatie $\vert x \vert$, is gedefinieerd als het aantal symbolen in $x$.
+	
+	\item[Lege Woord] \hfill \\
+	Het \textbf{lege woord} $\epsilon$ is gedefinieerd als het woord met lengte 0.
+	
+	\item[Taal] \hfill \\
+	Een \textbf{taal} $L$ over een alfabet $\Sigma$ is een deelverzameling van $\Sigma^*$, ofwel $L \subseteq \Sigma^*$.
+	
+	\item[Turingmachine] \hfill \\
+	Een \textbf{Turingmachine} is een 7-tupel ($Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject}$), waar $Q, \Sigma, \Gamma$ eindige verzamelingen zijn en:
+	\begin{itemize}
+		\item Q is de verzameling \textbf{toestanden}
+		\item $\Sigma$ het \textbf{invoeralfabet} dat niet het \textbf{lege symbool} $\sqcup$ bevat.
+		\item $\Gamma$ is het \textbf{tape-alfabet}, waar $\sqcup \in \Gamma$ en $\Sigma \subseteq \Gamma$.
+		\item $\delta : Q \times \Gamma \longrightarrow Q \times \Gamma \times \{ L, R \}$ is de \textbf{transitiefunctie}.
+		\item $q_0$, $q_{accept}$, $q_{reject} \in Q$ zijn respectievelijk de \textbf{begintoestand}, de \textbf{accepterende} en de textbf{verwerpende toestand} met $q_{accept} \neq q_{reject}$. 
+	\end{itemize}
+	
+	\item[de Taal van $M$] \hfill \\
+	De \textbf{taal van M} is de verzameling woorden die $M$ accepteert, notatie $L(M)$.
+	
+	\item[Turing-herkenbaar] \hfill \\
+	Een taal $L$ is \textbf{Turingherkenbaar} als er een TM $M$ bestaat zodanig dat $L(M) = L$. Zo'n TM $M$ wordt een \textbf{herkenner} van $L$ genoemd.
+	
+	\item[Turing-beslisbaar] \hfill \\
+	Een taal $L$ is \textbf{Turing-beslisbaar} als er een TM $M$ bestaat zodanig dat $L(M) = L$ en $M$ voor iedere invoer in een stopconfiguratie terecht komt. Zo'n TM $M$ wordt een \textbf{beslisser} van $L$ genoemd.
+	
+	\item[Multitape Turingmachine] \hfill \\
+	Een TM kan meerdere tapes hebben. Een k-tape TM kan worden gesimuleerd door een standaard \'{e}\'{e}n-tape TM.
+	
+	\item[Opsommer] \hfill \\
+	Een TM $M$ is een \textbf{opsommer} van taal $L$ als deze, gegeven het lege woord op de invoertape, alle woorden van $L$ print, gescheiden door spaties en in een door de machine bepaalde volgorde.
+	
 	\item[Symmetrisch Verschil van $L(A)$ en $L(B)$] \hfill \\
 	De verzameling van de elementen die tot een van de twee verzamelingen behoren, maar niet allebei.
 	$$L(C) = \left( L(A) \cap \overline{L(B)} \right) \cup \left( \overline{L(A)} \cap L(B) \right)$$
-	
 	
 	\item[Injectief (one-to-one)] \hfill \\
 	Een functie $f$ is injectief als het nooit twee verschillende elementen projecteert op dezelfde positie - als $a \neq b$, dan $f(a) \neq f(b)$.
@@ -294,6 +334,10 @@
 
 \section*{Stellingen}
 \begin{itemize}
+	\item \textbf{Church-Turingthese}: iets is berekenbaar als er een TM voor gevonden kan worden.
+	
+	\item Voor iedere niet-deterministische TM bestaat een equivalente deterministische TM.
+	
 	\item Een taal is beslisbaar dan en slechts dan als het Turingherkenbaar is en co-Turingherkenbaar
 	
 
