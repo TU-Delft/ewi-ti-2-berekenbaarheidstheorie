@@ -5,9 +5,9 @@
 
 \begin{document}
 
-\title{Title}
-\author{Author}
-\date{Today}
+\title{Berekenbaarheidstheorie Samenvatting}
+\author{Daan Schipper}
+\date{16 april 2014}
 \maketitle
 
 \section*{Beslisbare talen}
@@ -257,7 +257,20 @@
 	\begin{itemize}
 		\item Als $A \leq_m B$ en $B$ is beslisbaar, dan is $A$ beslisbaar.
 		\item Als $A \leq_m B$ en $B$ is onbeslisbaar, dan is $A$ onbeslisbaar.
+		\item Als $A \leq_m B$ en $B$ is herkenbaar, dan is $A$ herkenbaar.
+		\item Als $A \leq_m B$ en $B$ is niet herkenbaar, dan is $A$ herkenbaar.
 	\end{itemize}
+	
+	Standaard opstelling van een mapping reductie:\\
+	Bewijs dat $L$ onbeslisbaar is, waar
+	$$L = \{ \langle M \rangle \mid M \mbox{ is een TM en er geldt eigenschap P}\}$$ 
+
+	We voeren de mapping reductie $HALT_{TM} \leq_m L$ uit.
+	Definieer de volgende TM $N$ voor een gegeven Turingmachine $M$ met invoer $w$:
+	$N = $ ``Op invoer x:
+	\begin{enumerate}
+		\item Simulier
+	\end{enumerate}
 \end{description}
 \end{itemize}
 
