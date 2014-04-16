@@ -269,8 +269,26 @@
 	Definieer de volgende TM $N$ voor een gegeven Turingmachine $M$ met invoer $w$:
 	$N = $ ``Op invoer x:
 	\begin{enumerate}
-		\item Simulier
+		\item Simuleer $M$ op $w$.
+		\item Magie waardoor $M$ de eigenschap $P$ heeft.
 	\end{enumerate}
+	
+	Het bewijs dat $f$ voldoet aan de eisen van mapping reductie. We moeten voldoen aan twee eisen:
+	\begin{itemize}
+		\item $f$ is een berekenbare functie. De volgende Turingmachine $F$ berekent $f$: \\
+		$F = $ ``Op invoer $\langle M, w \rangle$:
+		\begin{enumerate}
+			\item Construeer $N$ m.b.v. $M$ en $w$.
+			\item Print $\langle N, w \rangle$ en stop.''
+		\end{enumerate}
+		
+		\item $f$ is een mapping reductie voor $HALT_{TM} \leq_m$, immers:
+		\begin{itemize}
+			\item Als $\langle M, w \rangle \in HALT_{TM}$, dan zal $M$ op invoer $w$ stoppen. Dit betekent dat $N$ aan stap 2 toekomt. Verdere redenatie waaruit volgt dat $f( \langle M, w \rangle ) = \langle N, w \rangle \in L$
+			\item Als $\langle M, w \rangle \notin HALT_{TM}$, dan zal $M$ niet op invoer $w$ stoppen. Dit betekent dat $N$ nooit aan stap 2 toekomt. Verdere redenatie waaruit volgt dat $f( \langle M, w \rangle ) = \langle N, w \rangle \notin L$
+		\end{itemize}
+	Hieruit volgt dat $L$ onbeslisbaar is.
+	\end{itemize}
 \end{description}
 \end{itemize}
 
