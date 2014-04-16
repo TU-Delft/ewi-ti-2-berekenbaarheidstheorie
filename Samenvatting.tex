@@ -1,0 +1,271 @@
+\documentclass[]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+
+\begin{document}
+
+\title{Title}
+\author{Author}
+\date{Today}
+\maketitle
+
+\section*{Beslisbare talen}
+\begin{itemize}
+	\item $A_{DFA} = \{ \langle B, w \rangle \mid B \mbox{ is een DFA die $w$ accepteert} \} $
+	
+	$A_{DFA}$ is beslisbaar door de volgende TM $M$: \\
+	$M = $ ``Op invoer $\langle B, w \rangle$, waar $B$ een DFA is en $w$ een woord:
+	\begin{enumerate}
+		\item Simuleer $w$ op $B$
+		\item Als $B$ accepteert, \emph{accepteer}; als $B$ verwerpt, \emph{verwerp}''
+	\end{enumerate}
+	
+	
+	\item $A_{NFA} = \{ \langle B, w \rangle \mid B \mbox{ is een NFA die $w$ accepteert} \} $
+	
+	$A_{NFA}$ is beslisbaar door de volgende TM $N$: \\
+	$N = $ ``Op invoer $\langle B, w \rangle$, waar $B$ een NFA is en $w$ een woord:
+	\begin{enumerate}
+		\item Converteer NFA $B$ naar een equivalente DFA $C$ met de procedure voor deze conversie beschreven in Theorem 1.39 in Sipser.
+		\item Voer TM $M$ uit op de input $\langle C, w \rangle$.
+		\item Als $M$ accepteert, \emph{accepteer}; anders \emph{verwerp}.''
+	\end{enumerate}
+	
+	
+	\item $A_{REX} = \{ \langle R, w \rangle \mid R \mbox{ is een reguliere expressie dat woord $w$ genereert} \} $
+	
+	$A_{REX}$ is beslisbaar door de volgende TM $P$: \\
+	$P = $ ``Op invoer $\langle R, w \rangle$, waar $R$ een reguliere expressie is en $w$ een woord:
+	\begin{enumerate}
+		\item Converteer de reguliere expressie $R$ naar een equivalente NFA $A$ met de procedure voor deze conversie beschreven in Theorem 1.54 in Sipser.
+		\item Voer TM $N$ uit op invoer $\langle A, w \rangle$.
+		\item Als $N$ accepteert, \emph{accepteer}; als $N$ verwerpt, \emph{verwerp}.''
+	\end{enumerate}
+	
+	
+	\item $E_{DFA} = \{ \langle A \rangle \mid A \mbox{ is een DFA en } L(A) = \emptyset \}$
+	
+	$E_{DFA}$ is beslisbaar door de volgende TM $T$: \\
+	$T = $ ``Op invoer $\langle A \rangle$, waar $A$ een DFA is:
+	\begin{enumerate}
+		\item Markeer de start configuratie van $A$.
+		\item Herhaal totdat er geen nieuwe configuratie worden gemarkeerd:
+		\item \hspace*{3mm} Markeer elke configuratie die een transitie naar zich heeft van een configuratie die al gemarkeerd is
+		\item Als geen accepterende configuratie is gemarkeerd, \emph{accepteer}; anders, \emph{verwerp}''
+	\end{enumerate}
+	
+	\item $EQ_{DFA} = \{ \langle A, B \rangle \mid \mbox{$A$ en $B$ zijn DFAs en } L(A) = L(B) \}$ 
+	
+	$EQ_{DFA}$ is beslisbaar door de volgende Turinmachine $F$: \\
+	$F = $ ``Op invoer $\langle A, B \rangle$, waar $A$ en $B$ DFAs zijn:
+	\begin{enumerate}
+		\item Construeer DFA $C$ met behulp van het symmetrisch verschil.
+		\item Voer TM $T$ uit op input $\langle C \rangle$.
+		\item Als $T$ accepteert, \emph{accepteer}. Als $T$ verwerpt, \emph{verwerp}.''
+	\end{enumerate}
+	
+	
+	\item $A_{CFG} = \{ \langle G, w \rangle \mid G \mbox{ is een CFG dat woord $w$ genereert} \}$
+	
+	$A_{CFG}$ is beslisbaar door de volgende TM $S$: \\
+	$S = $ ``Op invoer $\langle G, w \rangle$, waar $G$ een CFG is en $w$ een string:
+	\begin{enumerate}
+		\item Converteer $G$ naar een equivalente grammatica in Chomsky normaal vorm.
+		\item Noteer alle afleidingen met $2n -1$ stappen, waar $n$ de lengte is van $w$; behalve als $n = 0$, noteer dan alle afleidingen met \'{e}\'{e}n stap.
+		\item Als een van deze afleidingen $w$ genereert, \emph{accepteer}; zo niet, \emph{verwerp}.''
+	\end{enumerate}
+	
+	
+	\item $E_{CFG} = \{ \langle G \rangle \mid G \mbox{ is een CFG en } L(G) = \emptyset \} $
+	
+	$E_{CFG}$ is beslisbaar door de volgende TM $R$: \\
+	$R = $ ``Op invoer $\langle G \rangle$, waar $G$ een DFG is:
+	\begin{enumerate}
+		\item Markeer al eindige symbolen in $G$
+		\item Herhaal totdat geen nieuwe variabelen worden gemarkeerd:
+		\item \hspace*{3mm} Markeer elke variabele $A$ waar $G$ een regel $A \rightarrow U_1U_2 \dots U_k$ en ieder symbool $U_1,\dots,U_k$ is al gemarkeerd.
+		\item Als de start variabele niet gemarkeerd is, \emph{accepteer}; anders, \emph{verwerp}.''
+	\end{enumerate}
+	
+	\item Ieder contextvrije taal is beslisbaar
+	
+	\item $A_{LBA} = \{ \langle M, w \rangle \mid M \mbox{ is een LBA dat woord $w$ accepteert} \}$
+	
+	$A_{LBA}$ is beslibaar door de volgende TM $L$: \\
+	$L = $ ``Op invoer $\langle M, w \rangle$, waar $M$ een LBA is en $w$ een woord:
+	\begin{enumerate}
+		\item Simuleer $M$ op $w$ voor $qng^n$ stappen of totdat het stopt.
+		\item Als $M$ is gestopt, \emph{accepteer} als het heeft geaccepteerd en \emph{verwerp} als het heeft verworpen. Als het niet gestopt is, \emph{verwerp}.''
+	\end{enumerate}
+\end{itemize}
+
+\section*{Onbeslisbare Talen}
+\begin{itemize}
+	\item $A_{TM} = \{ \langle M, w \rangle \mid M \mbox{ is een TM en $M$ accepteert $w$}\}$
+	
+	Bewijs uit het ongerijmde.
+	Neem aan dat $H$ een beslisser is voor $A_{TM}$. Dus $H$ is een TM, waar
+	$$H\left( \langle M, w \rangle \right) = \begin{cases}\emph{accepteer} & \mbox{als $w$ wordt geaccepteert door $M$ } \\ \emph{verwerp} & \mbox{als $w$ niet wordt geaccepteerd door $M$}  \end{cases}$$
+	Vervolgens construeren we $D$, die het tegengestelde doet van $H$.\\
+	$D = $ ``Op invoer $\langle M \rangle$, waar $M$ een Turinmachine is: 
+	\begin{enumerate}
+		\item Voer $H$ uit op invoer $\langle M, \langle M \rangle \rangle$.
+		\item Output het tegenovergestelde van wat $H$ output. Dus als $H$ accepteert, \emph{verwerp}; en als $H$ verwerpt, \emph{accepteer}
+	\end{enumerate}
+	Samengevat:
+	$$D\left( \langle M \rangle \right) = \begin{cases}\emph{accepteer} & \mbox{als $\langle M \rangle$ niet wordt geaccepteert door $M$ } \\ \emph{verwerp} & \mbox{als $\langle M \rangle$ wordt geaccepteerd door $M$}  \end{cases}$$
+	Als $\langle D \rangle$ wordt gesimuleerd op $D$ krijgen we
+	$$D\left( \langle D \rangle \right) = \begin{cases}\emph{accepteer} & \mbox{als $\langle D \rangle$ niet wordt geaccepteert door $D$ } \\ \emph{verwerp} & \mbox{als $\langle DM \rangle$ wordt geaccepteerd door $D$}  \end{cases}$$
+	
+	Ongeacht wat $D$ doet, het wordt gedwongen om het tegenovergestelde te doen, wat duidelijk een contradictie is. Dus noch TM $D$ noch TM $H$ kunnen bestaan.
+	
+	\item $HALT_{TM} = \{ \langle M, w \rangle \mid M \mbox{ is een TM en $M$ stopt op invoer $w$}\}$
+	
+	Bewijs met directe reductie naar $A_{TM}$ uit het ongerijmde.
+	Neem aan dat TM $R HALT_{TM}$ beslist. Construeer TM $S$ om $A_{TM}$ te beslissen, als volgt: \\
+	$S = $ ``Op invoer $\langle M, w \rangle$, een codering van een TM $M$ en een woord $w$:
+	\begin{enumerate}
+		\item Voer TM $R$ uit op invoer $\langle M, w \rangle$.
+		\item Als $R$ verwerpt, \emph{verwerp}.
+		\item Als $R$ accepteert, simuleer $M$ op $w$ totdat het stopt.
+		\item Als $M$ heeft geaccepteerd, \emph{accepteer}; als $M$ heeft verworpen, \emph{verwerp}.''
+	\end{enumerate}
+	Het is duidelijk dat $R HALT_{TM}$ beslist als $S A_{TM}$ beslist. Omdat $A_{TM}$ onbeslisbaar is, moet $HALT_{TM}$ ook onbeslisbaar zijn.
+	
+	
+	\item $E_{TM} = \{ \langle M \rangle \mid M \mbox{ is een Tm en } L(M) = \emptyset \}$
+	
+	Bewijs met directe reductie naar $A_{TM}$ uit het ongerijmde.	
+	Definieer $M_1$ als volgt:
+	$M_1 = $ ``Op invoer $x$: \\
+	\begin{enumerate}
+		\item Als x $\neq$ w, \emph{verwerp}
+		\item Als x = w, voer $M$ uit op invoer $w$ en \emph{accepteer} als $M$ accepteert.''
+	\end{enumerate}
+	
+	Neem aan dat TM $R E_{TM}$ beslist en definieer TM $S$ die $A_{TM}$ beslist als volgt: \\
+	$S = $ ``Op invoer $\langle M, w \rangle$, een codering van en TM $M$ en een woord $w$:
+	\begin{enumerate}
+		\item	 Gebruik de beschrijving van $M$ en $w$ om de TM $M_1$ te construeren.
+		\item Voer $R$ uit op invoer $\langle M_1 \rangle$.
+		\item Als $R$ accepteert, \emph{verwerp}; als $R$ verwerpt, \emph{accepteer}.''
+	\end{enumerate}
+	Als $R$ een beslisser zou zijn voor $E_{TM}$, dan zou $S$ een beslisser zijn voor $A_{TM}$. Aangezien een beslisser voor $A_{TM}$ niet kan bestaan, is $E_{TM}$ niet beslisbaar.
+	
+	
+	\item $REGULAR_{TM} = \{ \langle M \rangle \mid M \mbox{ is een TM en $L(M)$ is een reguliere taal} \}$
+
+	Bewijs met directe reductie naar $A_{TM}$ uit het ongerijmde.
+	Laat $R$ een TM zijn die $REGULAR_{TM}$ beslist en construeer TM $S$ die $A_{TM}$ beslist als volgt: \\
+	$S = $ ``Op invoer $\langle M, w \rangle$, waar $M$ een TM is en $w$ een woord:
+	\begin{enumerate}
+		\item Construeer de volgende TM $M_2$. \\
+		$M_2 = $ ``Op invoer $x$:
+		\begin{enumerate}[1.]
+			\item Als $x$ van de vorm $0^n1^n$ is, \emph{accepteer}.
+			\item Als $x$ niet deze vorm heeft, voer $M$ uit op invoer $w$ en \emph{accepteer} als $w$ wordt geaccepteerd door $M$. 
+		\end{enumerate}
+		\item Voer $R$ uit op invoer $\langle M_2 \rangle$.
+		\item Als $R$ accepteert, \emph{accepteer}; als $R$ verwerpt, \emph{verwerp}.''
+	\end{enumerate}
+	Als $R$ een beslisser zou zijn voor $REGULAR_{TM}$, dan zou $S$ een beslisser zijn voor $A_{TM}$. Aangezien een beslisser voor $A_{TM}$ niet kan bestaan, is $REGULAR_{TM}$ niet beslisbaar.
+		
+	
+	\item $EQ_{TM} = \{ \langle M_1, M_2 \rangle \mid \mbox{$M_1$ en $M_2$ zijn TMs en } L(M_1) = L(M_2) \}$
+	
+	Bewijs met directe reductie naar $E_{TM}$ uit het ongerijmde.
+	Laat $R$ een TM zijn die $EQ_{TM}$ beslist en construeer TM $S$	 die $E_{TM}$ beslist als volgt: \\
+	$S = $ ``Op invoer $\langle M \rangle$, waar $M$ een TM is:
+	\begin{enumerate}
+		\item Voer $R$ uit op invoer $\langle M, M_1 \rangle$, waar $M_1$ een TM is die alle invoeren verwerpt.
+		\item Als $R$ accepteert, \emph{accepteer}; als $R$ verwerpt, \emph{verwerp}.''
+	\end{enumerate}
+	Als $R$ een beslisser zou zijn voor $EQ_{TM}$, dan zou $S$ een beslisser zijn voor $E_{TM}$. Aangezien een beslisser voor $E_{TM}$ niet kan bestaan, is $EQ_{TM}$ niet beslisbaar.
+	
+	
+	\item $E_{LBA} = \{ \langle M \rangle \mid M \mbox{ is een LBA waar } L(M) = \emptyset \}$
+	
+	Bewijs met directe reductie naar $A_{TM}$ uit het ongerijmde.
+	Laat $R$ een TM zijn die $E_{LBA}$ beslist en construeer TM $S$ die $A_{TM}$ beslist als volgt: \\	
+	$S = $ ``Op invoer $\langle M, w \rangle$, waar $M$ een TM is en $w$ een woord:
+	\begin{enumerate}
+		\item Construeer LBA $B$ van $M$ en $w$. LBA $B$ werkt als volgt. Wanneer het een invoer $x$ ontvangt, accepteert $B$ als $x$ een accepterende berekeningsgeschiedenis is van $M$ op $w$.
+		\item Voer $R$ uit op invoer $\langle B \rangle$.
+		\item Als $R$ verwerpt, \emph{accepteer}; als $R$ accepteert, \emph{verwerp}.''
+	\end{enumerate}
+	Als $\langle B \rangle$ wordt geaccepteerd door $R$, dan geldt $L(B) = \emptyset$. Dus, $M$ heeft geen accepterende berekeningsgeschiedenis van $w$ en accepteert $M w$ niet. Derhalve, $S$ verwerpt $\langle M, w \rangle$. Evenzo, als $\langle B \rangle$ wordt verworpen door $R$, dan is de taal van $B$ niet leeg. Het enige woord dat $B$ kan accepteren is een accepterende berekeningsgeschiedenis voor $M$ op $w$. Derhalve, $M$ moet $w$ accepteren. Derhalve, $S$ accepteert $\langle M, w \rangle$. \\
+	Als $R$ een beslisser zou zijn voor $E_{LBA}$, dan zou $S$ een beslisser zijn voor $A_{TM}$. Aangezien een beslisser voor $A_{TM}$ niet kan bestaan, is $E_{LBA}$ niet beslisbaar.
+	
+	
+	\item $ALL_{CFG} = \{ \langle G \rangle \mid G \mbox{ is een CFG en } L(G) = \Sigma^* \}$
+	
+	Bewijst met directe reductie naar $A_{TM}$ uit het ongerijmde.
+	
+	
+	\item $EQ_{CFG}$
+		
+\section*{Definities}
+\begin{description}
+	\item[Symmetrisch Verschil van $L(A)$ en $L(B)$] \hfill \\
+	De verzameling van de elementen die tot een van de twee verzamelingen behoren, maar niet allebei.
+	$$L(C) = \left( L(A) \cap \overline{L(B)} \right) \cup \left( \overline{L(A)} \cap L(B) \right)$$
+	
+	
+	\item[Injectief (one-to-one)] \hfill \\
+	Een functie $f$ is injectief als het nooit twee verschillende elementen projecteert op dezelfde positie - als $a \neq b$, dan $f(a) \neq f(b)$.
+	
+	\item[Surjectief (onto)] \hfill \\
+	Een functie $f$ is surjectief als het ieder element van $B$ projecteert - er bestaat voor iedere $b \in B$ een $a \in A$ met $f(b) = a$.
+	
+	\item[Bijectief (correspondence)] \hfill \\
+	Een functie $f$ is bijectief als het zowel injectief als surjectief is.
+	
+	\item[Oneindig Aftelbaar] \hfill \\
+	Een verzameling $A$ is oneindig aftelbaar als er een bijectie tussen $A$ en $\mathbb{N}$ bestaat.
+	
+	\item[Aftelbaar] \hfill \\
+	Een verzameling $A$ is aftelbaar als het of eindig is of als het oneindig aftelbaar is.
+	
+	\item[Overaftelbaar] \hfill \\
+	Een verzameling $A$ is overaftelbaar als het niet aftelbaar is
+	
+	\item[co-Turingherkenbaar] \hfill \\
+	Een taal is co-Turingherkenbaar als het het complement is van een Turingherkenbare taal
+	
+	\item[Accepterende Berekeningsgeschiedenis] \hfill \\
+	Een accepterende berekeningsgeschiedenis van $M$ op $w$ is een reeks configuraties $C_0,C_1,\dots,C_n$ zodanig dat:
+	\begin{enumerate}[i.]
+		\item $C_0$ is de start configuratie van $M$ m.b.t. $w$;
+		\item $C_i$ levert $C_{i+1}$ op voor $0 \leq i < n$; en
+		\item $C_n$ is een accepterende configuratie van $M$.
+	\end{enumerate}
+	
+	\item[Verwerpende Berekeningsgeschiedenis] \hfill \\
+	Een verwerpende berekeningsgeschiedenis is hetzelfde gedefinieerd als een accepterende berekeningsgeschiedenis, behalve dat $C_n$ een verwerpende configuratie is.
+	
+	\item[Lineair Begrensde Automaat (LBA)] \hfill \\
+	Een LBA is een TM waarbij de lees/schrijfkop niet het deel van de tape mag/kan verlaten waarop de invoer staat/stond.\\
+	Zij $M$ een LBA met $q$ toestanden en $g$ symbolen in het tape-alfabet. Dan zijn er precies $qng^n$ verschillende configuraties van $M$ voor een tape van lengte $n$.
+	
+	\item[Berekenbare Functie] \hfill \\
+	Een functie $f: \Sigma^* \rightarrow \Sigma^*$ is een berekenbare functie als een TM $M$, op elke invoer $w$, stop met alleen $f(w)$ op de tape.
+	
+	\item[Mapping Reducibility] \hfill \\
+	Een taal $A$ is mapping reducible naar taal $B$, genoteerd als $A \leq_m B$, als er een berekenbare functie $f: \Sigma^* \rightarrow \Sigma^*$ bestaat, waar voor elke $w$,
+	$$w \in A \longleftrightarrow f(w) \in B$$
+	\begin{itemize}
+		\item Als $A \leq_m B$ en $B$ is beslisbaar, dan is $A$ beslisbaar.
+		\item Als $A \leq_m B$ en $B$ is onbeslisbaar, dan is $A$ onbeslisbaar.
+	\end{itemize}
+\end{description}
+\end{itemize}
+
+\section*{Stellingen}
+\begin{itemize}
+	\item Een taal is beslisbaar dan en slechts dan als het Turingherkenbaar is en co-Turingherkenbaar
+	
+	\item Rice's Theorie
+\end{itemize}
+
+\end{document}
