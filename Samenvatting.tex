@@ -342,7 +342,7 @@
 			\item Print $\langle N, w \rangle$ en stop.''
 		\end{enumerate}
 		
-		\item $f$ is een mapping reductie voor $HALT_{TM} \leq_m$, immers:
+		\item $f$ is een mapping reductie voor $HALT_{TM} \leq_m L$, immers:
 		\begin{itemize}
 			\item Als $\langle M, w \rangle \in HALT_{TM}$, dan zal $M$ op invoer $w$ stoppen. Dit betekent dat $N$ aan stap 2 toekomt. Verdere redenatie waaruit volgt dat $f( \langle M, w \rangle ) = \langle N, w \rangle \in L$
 			\item Als $\langle M, w \rangle \notin HALT_{TM}$, dan zal $M$ niet op invoer $w$ stoppen. Dit betekent dat $N$ nooit aan stap 2 toekomt. Verdere redenatie waaruit volgt dat $f( \langle M, w \rangle ) = \langle N, w \rangle \notin L$
